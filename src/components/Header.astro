@@ -1,0 +1,69 @@
+---
+const links = [
+  { href: '#beneficios', label: 'Beneficios' },
+  { href: '#como-funciona', label: 'Cómo funciona' },
+  { href: '#testimonios', label: 'Clientes' },
+  { href: '#faq', label: 'Preguntas' },
+]
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-crust/10 bg-cream/90 backdrop-blur-md"
+  data-header
+>
+  <div class="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-6">
+    <a href="#inicio" class="flex items-center gap-2.5 font-display text-lg font-bold text-espresso">
+      <img src="/logo.svg" alt="" width="36" height="36" />
+      Pan de Barrio
+    </a>
+    <button
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-lg border border-crust/20 bg-white md:hidden"
+      aria-expanded="false"
+      aria-controls="nav-principal"
+      data-nav-toggle
+    >
+      <span class="sr-only">Abrir menú</span>
+      <span class="relative block h-0.5 w-5 bg-espresso before:absolute before:-top-1.5 before:left-0 before:block before:h-0.5 before:w-5 before:bg-espresso before:content-[''] after:absolute after:top-1.5 after:left-0 after:block after:h-0.5 after:w-5 after:bg-espresso after:content-['']" data-nav-icon></span>
+    </button>
+    <nav
+      id="nav-principal"
+      class="absolute top-16 right-0 left-0 hidden flex-col gap-1 border-b border-crust/10 bg-cream px-6 py-4 shadow-lg md:static md:flex md:flex-row md:items-center md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+      data-nav
+    >
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-lg px-2 py-2 font-medium text-muted hover:text-crust md:py-1"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a href="#contacto" class="btn-primary mt-2 w-full text-center md:mt-0 md:ml-2 md:w-auto">
+        Pedir pan
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const navToggle = document.querySelector('[data-nav-toggle]')
+  const nav = document.querySelector('[data-nav]')
+
+  navToggle?.addEventListener('click', () => {
+    const open = navToggle.getAttribute('aria-expanded') === 'true'
+    navToggle.setAttribute('aria-expanded', String(!open))
+    nav?.classList.toggle('hidden', open)
+    nav?.classList.toggle('flex', !open)
+  })
+
+  nav?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      navToggle?.setAttribute('aria-expanded', 'false')
+      nav?.classList.add('hidden')
+      nav?.classList.remove('flex')
+    })
+  })
+</script>
