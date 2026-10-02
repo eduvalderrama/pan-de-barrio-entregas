@@ -30,6 +30,14 @@ html {
   }
 
   .section-pad {
-    @apply scroll-mt-20 px-6 py-16 md:py-20;
+    @apply scroll-mt-20 px-6 py-10 md:py-12;
+  }
+
+  .section-pad-tight-bottom {
+    @apply scroll-mt-20 px-6 pt-10 pb-5 md:pt-12 md:pb-6;
+  }
+
+  .section-pad-tight-top {
+    @apply scroll-mt-20 px-6 pt-6 pb-10 md:pt-8 md:pb-12;
   }
 }
